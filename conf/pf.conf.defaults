@@ -1159,7 +1159,7 @@ username_attributes=PacketFence-UserNameAttribute,TLS-Client-Cert-Subject-Alt-Na
 # radius_configuration.forward_key_balanced
 #
 # Send in the proxy request the attribute PacketFence-KeyBalanced to randomize the load balance in the next PacketFence RADIUS server
-PacketFence-KeyBalanced=disabled
+forward_key_balanced=disabled
 
 [pfdhcp]
 #
