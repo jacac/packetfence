@@ -1073,7 +1073,7 @@ systemctl stop packetfence-config packetfence-mariadb packetfence-redis-cache
 [source,bash]
 ----
 # Debian
-apt install -y build-essential libipset-dev pkg-config
+apt install -y build-essential libipset-dev pkg-config gettext
 
 # CentOS
 yum groupinstall -y "Development Tools"
@@ -1125,9 +1125,10 @@ sudo make dev
 [source,bash]
 ----
 cd /usr/local/pf
-make bin/pfcmd
-make fingerbank
+//make bin/pfcmd
+// make fingerbank
 make permissions
+systemctl start packetfence-mariadb
 systemctl start packetfence-config packetfence-redis-cache
 ----
 +
