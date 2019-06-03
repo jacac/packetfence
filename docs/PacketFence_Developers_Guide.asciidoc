@@ -1094,8 +1094,23 @@ cd pf
 // ln -s /usr/local/pf-pkg/conf conf
 // ln -s /usr/local/pf-pkg/raddb raddb
 // chown pf:pf var/control
+----
+
+. Patch examples file (only necessary if running on Debian):
+[source,bash]
+----
+git apply debian/patches/debianize.patch --verbose
+----
+
+. Create all necessary files:
+----
 make devel
+make conf/ssl/server.pem
 mkdir /usr/local/pf/var/ssl_mutex
+cp ../pf-pkg/conf/pf.conf conf/
+cp ../pf-pkg/conf/pfconfig.conf conf/
+cp ../pf-pkg/conf/currently-at conf/
+ln -s /usr/local/pf/raddb/sites-available/status /usr/local/pf/raddb/sites-enabled/status
 ----
 +
 
@@ -1120,6 +1135,16 @@ sudo make dev
 ----
 +
 
+. Install Golang environment and build Golang binaries
++
+[source,bash]
+----
+cd /usr/local/pf/go
+make go-env
+/usr/local/pf/addons/packages/build-go.sh build /usr/local/pf /usr/local/pf/sbin/
+----
++
+
 . Fix permissions and start `packetfence-config` and `packetfence-redis-cache` service:
 +
 [source,bash]
@@ -1133,13 +1158,11 @@ systemctl start packetfence-config packetfence-redis-cache
 ----
 +
 
-. Install Golang environment and build Golang binaries
+. Start PacketFence's services:
 +
 [source,bash]
 ----
-cd /usr/local/pf/go
-make go-env
-/usr/local/pf/addons/packages/build-go.sh build /usr/local/pf /usr/local/pf/sbin/
+/usr/local/pf/bin/pfcmd service pf restart
 ----
 +
 
