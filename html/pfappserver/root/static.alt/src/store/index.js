@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import config from './modules/config'
 import events from './modules/events'
+import documentation from './modules/documentation'
 import notification from './modules/notification'
 import pfqueue from './modules/pfqueue'
 import preferences from './modules/preferences'
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   modules: {
     config,
     events,
+    documentation,
     notification,
     pfqueue,
     preferences,
