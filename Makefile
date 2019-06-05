@@ -132,8 +132,7 @@ permissions: bin/pfcmd
 	./bin/pfcmd fixpermissions
 
 raddb/certs/server.crt:
-	@echo "Build FreeRADIUS certificates"
-	@cd raddb/certs; make
+	cd raddb/certs; make
 
 .PHONY: raddb-sites-enabled
 
